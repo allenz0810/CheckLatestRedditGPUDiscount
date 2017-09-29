@@ -1,6 +1,5 @@
 ﻿using MailKit.Net.Smtp;
 using MimeKit;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -14,21 +13,22 @@ namespace CheckLatestRedditGUPDiscount
 {
     internal class Program
     {
+        private static string LastDiscount = "";
+
         private static void Main(string[] args)
         {
-            string LastDiscount = "";
             while (true)
             {
-                ProcessRepositories(LastDiscount).Wait();
-                
+                ProcessRepositories().Wait();
+
                 Thread.Sleep(90000);
             }
         }
 
-        private static async Task<IDictionary<string, string>> ProcessRepositories(string LastDiscount)
+        private static async Task<IDictionary<string, string>> ProcessRepositories()
         {
             IDictionary<string, string> validDiscounts = new Dictionary<string, string>();
-            
+
             var client = new HttpClient();
             client.DefaultRequestHeaders.Accept.Clear();
             var stringTask = client.GetStringAsync("https://www.reddit.com/r/buildapcsales/search?q=GPU&sort=new&restrict_sr=on&feature=legacy_search");
@@ -57,8 +57,8 @@ namespace CheckLatestRedditGUPDiscount
                 {
                     if (validDiscounts.Count != 0)
                     {
-                        SendEmail(validDiscounts, LastDiscount);
-                    } 
+                        SendEmail(validDiscounts);
+                    }
 
                     return validDiscounts;
                 }
@@ -74,15 +74,15 @@ namespace CheckLatestRedditGUPDiscount
 
             if (validDiscounts.Count != 0)
             {
-                SendEmail(validDiscounts, LastDiscount);
+                SendEmail(validDiscounts);
             }
 
             return validDiscounts;
         }
 
-        private static void SendEmail(IDictionary<string, string> validDiscounts, string LastDiscount)
+        private static void SendEmail(IDictionary<string, string> validDiscounts)
         {
-            LastDiscount = validDiscounts.OrderBy(kvp => kvp.Key).First().Value;
+            LastDiscount = validDiscounts.First().Value;
 
             //var client = new SmtpClient("smtp.gmail.com", 587)
             //{
@@ -97,6 +97,7 @@ namespace CheckLatestRedditGUPDiscount
             foreach (var validDiscount in validDiscounts)
             {
                 sb.AppendLine("Discount - (" + validDiscount.Value + ")" + ", URL - (" + validDiscount.Key + ")");
+                sb.AppendLine("-----------------------------------------------------------------------------------");
             }
 
             var message = new MimeMessage();
@@ -116,6 +117,10 @@ namespace CheckLatestRedditGUPDiscount
                 client.Send(message);
                 client.Disconnect(true);
             }
+        }
+
+        private static void SendTextMessage(IDictionary<string, string> validDiscounts)
+        {
         }
     }
 }
