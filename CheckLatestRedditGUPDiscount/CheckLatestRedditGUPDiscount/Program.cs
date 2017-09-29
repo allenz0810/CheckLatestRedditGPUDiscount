@@ -1,7 +1,11 @@
-﻿using System;
+﻿using MailKit.Net.Smtp;
+using MimeKit;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
@@ -23,7 +27,7 @@ namespace CheckLatestRedditGUPDiscount
 
         private static async Task<IDictionary<string, string>> ProcessRepositories(string LastDiscount)
         {
-            IDictionary<string, string> validDiscount = new Dictionary<string, string>();
+            IDictionary<string, string> validDiscounts = new Dictionary<string, string>();
             
             var client = new HttpClient();
             client.DefaultRequestHeaders.Accept.Clear();
@@ -51,34 +55,67 @@ namespace CheckLatestRedditGUPDiscount
                 var currentLastDiscount = anchortagString.Substring(textStatPoint, textEndPoint - textStatPoint);
                 if (LastDiscount == currentLastDiscount)
                 {
-                    if (validDiscount.Count != 0)
+                    if (validDiscounts.Count != 0)
                     {
-                        SendEmail(validDiscount, LastDiscount);
+                        SendEmail(validDiscounts, LastDiscount);
                     } 
 
-                    return validDiscount;
+                    return validDiscounts;
                 }
                 else
                 {
-                    if (!validDiscount.ContainsKey(currentURL))
+                    if (!validDiscounts.ContainsKey(currentURL))
                     {
-                        validDiscount.Add(currentURL, currentLastDiscount);
+                        validDiscounts.Add(currentURL, currentLastDiscount);
                     }
                 }
                 m = m.NextMatch();
             }
 
-            if (validDiscount.Count != 0)
+            if (validDiscounts.Count != 0)
             {
-                SendEmail(validDiscount, LastDiscount);
+                SendEmail(validDiscounts, LastDiscount);
             }
 
-            return validDiscount;
+            return validDiscounts;
         }
 
-        private static void SendEmail(IDictionary<string, string> validDiscount, string LastDiscount)
+        private static void SendEmail(IDictionary<string, string> validDiscounts, string LastDiscount)
         {
-            LastDiscount = validDiscount.OrderBy(kvp => kvp.Key).First().Value;
+            LastDiscount = validDiscounts.OrderBy(kvp => kvp.Key).First().Value;
+
+            //var client = new SmtpClient("smtp.gmail.com", 587)
+            //{
+            //    Credentials = new NetworkCredential("myusername@gmail.com", "mypwd"),
+            //    EnableSsl = true
+            //};
+            //client.Send("myusername@gmail.com", "myusername@gmail.com", "test", "testbody");
+            //Console.WriteLine("Sent");
+            //Console.ReadLine();
+
+            StringBuilder sb = new StringBuilder();
+            foreach (var validDiscount in validDiscounts)
+            {
+                sb.AppendLine("Discount - (" + validDiscount.Value + ")" + ", URL - (" + validDiscount.Key + ")");
+            }
+
+            var message = new MimeMessage();
+            message.From.Add(new MailboxAddress("Allen", "Allen0810@gmail.com"));
+            message.To.Add(new MailboxAddress("Allen", "azhuo@fsco.com"));
+            message.Subject = "Reddit GUP Discount";
+            message.Body = new TextPart("plain")
+            {
+                Text = sb.ToString()
+            };
+
+            using (var client = new SmtpClient())
+            {
+                client.Connect("smtp.gmail.com", 587, false);
+                //client.AuthenticationMechanisms.Remove("XOAUTH2");
+                client.Authenticate(new NetworkCredential("xxx", "xxx"));
+                client.Send(message);
+                client.Disconnect(true);
+            }
         }
     }
 }

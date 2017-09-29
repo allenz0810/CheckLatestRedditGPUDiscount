@@ -42,6 +42,28 @@
           }
         }
       },
+      "MailKit/1.16.1": {
+        "type": "package",
+        "dependencies": {
+          "MimeKit": "1.16.1",
+          "NETStandard.Library": "1.6.1",
+          "Portable.BouncyCastle": "1.8.1.2",
+          "System.Data.Common": "4.3.0",
+          "System.Globalization.Extensions": "4.3.0",
+          "System.Net.NameResolution": "4.3.0",
+          "System.Net.NetworkInformation": "4.3.0",
+          "System.Net.Security": "4.3.0",
+          "System.Reflection.TypeExtensions": "4.3.0",
+          "System.Runtime.Serialization.Primitives": "4.3.0",
+          "System.Text.Encoding.CodePages": "4.3.0"
+        },
+        "compile": {
+          "lib/netstandard1.3/MailKit.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/MailKit.dll": {}
+        }
+      },
       "Microsoft.CodeAnalysis.Analyzers/1.1.0": {
         "type": "package"
       },
@@ -176,6 +198,32 @@
             "assetType": "native",
             "rid": "win8-arm"
           }
+        }
+      },
+      "Microsoft.Extensions.DependencyInjection/1.1.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.1.1",
+          "NETStandard.Library": "1.6.1"
+        },
+        "compile": {
+          "lib/netstandard1.1/Microsoft.Extensions.DependencyInjection.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.1/Microsoft.Extensions.DependencyInjection.dll": {}
+        }
+      },
+      "Microsoft.Extensions.DependencyInjection.Abstractions/1.1.1": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.1",
+          "System.ComponentModel": "4.3.0"
+        },
+        "compile": {
+          "lib/netstandard1.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {}
         }
       },
       "Microsoft.NETCore.App/1.1.2": {
@@ -343,6 +391,41 @@
           }
         }
       },
+      "MimeKit/1.16.1": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.1",
+          "Portable.BouncyCastle": "1.8.1.2",
+          "System.Data.Common": "4.3.0",
+          "System.Globalization.Extensions": "4.3.0",
+          "System.Net.NameResolution": "4.3.0",
+          "System.Net.NetworkInformation": "4.3.0",
+          "System.Reflection.TypeExtensions": "4.3.0",
+          "System.Runtime.Serialization.Primitives": "4.3.0",
+          "System.Text.Encoding.CodePages": "4.3.0"
+        },
+        "compile": {
+          "lib/netstandard1.3/MimeKit.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/MimeKit.dll": {}
+        }
+      },
+      "NETCore.MailKit/1.1.1": {
+        "type": "package",
+        "dependencies": {
+          "MailKit": "1.16.1",
+          "Microsoft.Extensions.DependencyInjection": "1.1.1",
+          "Microsoft.NETCore.App": "1.1.1",
+          "NuGet.Build.Packaging": "0.1.248"
+        },
+        "compile": {
+          "lib/netcoreapp1.1/NETCore.MailKit.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp1.1/NETCore.MailKit.dll": {}
+        }
+      },
       "NETStandard.Library/1.6.1": {
         "type": "package",
         "dependencies": {
@@ -390,6 +473,25 @@
           "System.Threading.Timer": "4.3.0",
           "System.Xml.ReaderWriter": "4.3.0",
           "System.Xml.XDocument": "4.3.0"
+        }
+      },
+      "NuGet.Build.Packaging/0.1.248": {
+        "type": "package",
+        "build": {
+          "build/NuGet.Build.Packaging.props": {},
+          "build/NuGet.Build.Packaging.targets": {}
+        }
+      },
+      "Portable.BouncyCastle/1.8.1.2": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.0"
+        },
+        "compile": {
+          "lib/netstandard1.3/BouncyCastle.Crypto.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/BouncyCastle.Crypto.dll": {}
         }
       },
       "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.1": {
@@ -700,6 +802,25 @@
         },
         "compile": {
           "ref/netstandard1.3/System.Console.dll": {}
+        }
+      },
+      "System.Data.Common/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Collections": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.IO": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Text.RegularExpressions": "4.3.0",
+          "System.Threading.Tasks": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.2/System.Data.Common.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.2/System.Data.Common.dll": {}
         }
       },
       "System.Diagnostics.Debug/4.3.0": {
@@ -1253,6 +1374,51 @@
           }
         }
       },
+      "System.Net.NetworkInformation/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "Microsoft.Win32.Primitives": "4.3.0",
+          "System.Collections": "4.3.0",
+          "System.Diagnostics.Tracing": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.IO": "4.3.0",
+          "System.IO.FileSystem": "4.3.0",
+          "System.IO.FileSystem.Primitives": "4.3.0",
+          "System.Linq": "4.3.0",
+          "System.Net.Primitives": "4.3.0",
+          "System.Net.Sockets": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Runtime.Handles": "4.3.0",
+          "System.Runtime.InteropServices": "4.3.0",
+          "System.Security.Principal.Windows": "4.3.0",
+          "System.Threading": "4.3.0",
+          "System.Threading.Overlapped": "4.3.0",
+          "System.Threading.Tasks": "4.3.0",
+          "System.Threading.Thread": "4.3.0",
+          "System.Threading.ThreadPool": "4.3.0",
+          "runtime.native.System": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.3/System.Net.NetworkInformation.dll": {}
+        },
+        "runtimeTargets": {
+          "runtimes/linux/lib/netstandard1.3/System.Net.NetworkInformation.dll": {
+            "assetType": "runtime",
+            "rid": "linux"
+          },
+          "runtimes/osx/lib/netstandard1.3/System.Net.NetworkInformation.dll": {
+            "assetType": "runtime",
+            "rid": "osx"
+          },
+          "runtimes/win/lib/netstandard1.3/System.Net.NetworkInformation.dll": {
+            "assetType": "runtime",
+            "rid": "win"
+          }
+        }
+      },
       "System.Net.Primitives/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -1676,6 +1842,19 @@
           "lib/netstandard1.3/System.Runtime.Numerics.dll": {}
         }
       },
+      "System.Runtime.Serialization.Primitives/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.3/System.Runtime.Serialization.Primitives.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/System.Runtime.Serialization.Primitives.dll": {}
+        }
+      },
       "System.Security.Claims/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -1966,24 +2145,24 @@
           "ref/netstandard1.3/System.Text.Encoding.dll": {}
         }
       },
-      "System.Text.Encoding.CodePages/4.0.1": {
+      "System.Text.Encoding.CodePages/4.3.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.NETCore.Platforms": "1.0.1",
-          "System.Collections": "4.0.11",
-          "System.Globalization": "4.0.11",
-          "System.IO": "4.1.0",
-          "System.Reflection": "4.1.0",
-          "System.Resources.ResourceManager": "4.0.1",
-          "System.Runtime": "4.1.0",
-          "System.Runtime.Extensions": "4.1.0",
-          "System.Runtime.Handles": "4.0.1",
-          "System.Runtime.InteropServices": "4.1.0",
-          "System.Text.Encoding": "4.0.11",
-          "System.Threading": "4.0.11"
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "System.Collections": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.IO": "4.3.0",
+          "System.Reflection": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Runtime.Handles": "4.3.0",
+          "System.Runtime.InteropServices": "4.3.0",
+          "System.Text.Encoding": "4.3.0",
+          "System.Threading": "4.3.0"
         },
         "compile": {
-          "ref/netstandard1.3/_._": {}
+          "ref/netstandard1.3/System.Text.Encoding.CodePages.dll": {}
         },
         "runtimeTargets": {
           "runtimes/unix/lib/netstandard1.3/System.Text.Encoding.CodePages.dll": {
@@ -2288,6 +2467,31 @@
         "runtimes/win7-x86/native/libuv.dll"
       ]
     },
+    "MailKit/1.16.1": {
+      "sha512": "1X68UT4Nx9RmItCM9nkUGIYAsYLMghCQ+bm1ZOlkYTrobvx8KbyvH7C99Us0gISbbcWNIMo0lroV0wIjCi6w2g==",
+      "type": "package",
+      "path": "mailkit/1.16.1",
+      "files": [
+        "lib/MonoAndroid10/MailKit.dll",
+        "lib/MonoAndroid10/MailKit.xml",
+        "lib/Xamarin.iOS10/MailKit.dll",
+        "lib/Xamarin.iOS10/MailKit.xml",
+        "lib/net40/MailKit.dll",
+        "lib/net40/MailKit.xml",
+        "lib/net45/MailKit.dll",
+        "lib/net45/MailKit.xml",
+        "lib/net451/MailKit.dll",
+        "lib/net451/MailKit.xml",
+        "lib/netstandard1.3/MailKit.dll",
+        "lib/netstandard1.3/MailKit.xml",
+        "lib/win81/MailKit.dll",
+        "lib/win81/MailKit.xml",
+        "lib/wpa81/MailKit.dll",
+        "lib/wpa81/MailKit.xml",
+        "mailkit.1.16.1.nupkg.sha512",
+        "mailkit.nuspec"
+      ]
+    },
     "Microsoft.CodeAnalysis.Analyzers/1.1.0": {
       "sha512": "HS3iRWZKcUw/8eZ/08GXKY2Bn7xNzQPzf8gRPHGSowX7u7XXu9i9YEaBeBNKUXWfI7qjvT2zXtLUvbN0hds8vg==",
       "type": "package",
@@ -2423,6 +2627,28 @@
         "runtimes/win/native/Microsoft.DiaSymReader.Native.arm.dll",
         "runtimes/win/native/Microsoft.DiaSymReader.Native.x86.dll",
         "runtimes/win8-arm/native/Microsoft.DiaSymReader.Native.arm.dll"
+      ]
+    },
+    "Microsoft.Extensions.DependencyInjection/1.1.1": {
+      "sha512": "HPromF7+ssYXilQndxMbuPfn2w9C9mP2owmNC48/bgts/TWBMlvnUYsvOvTC8Ojn0DuiDDGmHNqOtxwwvFSpAA==",
+      "type": "package",
+      "path": "microsoft.extensions.dependencyinjection/1.1.1",
+      "files": [
+        "lib/netstandard1.1/Microsoft.Extensions.DependencyInjection.dll",
+        "lib/netstandard1.1/Microsoft.Extensions.DependencyInjection.xml",
+        "microsoft.extensions.dependencyinjection.1.1.1.nupkg.sha512",
+        "microsoft.extensions.dependencyinjection.nuspec"
+      ]
+    },
+    "Microsoft.Extensions.DependencyInjection.Abstractions/1.1.1": {
+      "sha512": "sKsx2jEkabcI954cB6MoU2LUxv8YTByV8+ifqbFtIF8gFqPb4/CfPxwvxrYW+aXc4V44KKHOyeTDgyc4B7fjYg==",
+      "type": "package",
+      "path": "microsoft.extensions.dependencyinjection.abstractions/1.1.1",
+      "files": [
+        "lib/netstandard1.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+        "lib/netstandard1.0/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
+        "microsoft.extensions.dependencyinjection.abstractions.1.1.1.nupkg.sha512",
+        "microsoft.extensions.dependencyinjection.abstractions.nuspec"
       ]
     },
     "Microsoft.NETCore.App/1.1.2": {
@@ -2647,6 +2873,47 @@
         "runtimes/win/lib/netstandard1.3/Microsoft.Win32.Registry.dll"
       ]
     },
+    "MimeKit/1.16.1": {
+      "sha512": "5d0AImzeQ3VCpLuo3BHRTogmSxZ6LQMklNg0JHzVylgqeenogX47JAK6s9P1DcEUW7EHeWcHW07fASC4HmKbWg==",
+      "type": "package",
+      "path": "mimekit/1.16.1",
+      "files": [
+        "lib/MonoAndroid10/BouncyCastle.dll",
+        "lib/MonoAndroid10/MimeKit.dll",
+        "lib/MonoAndroid10/MimeKit.xml",
+        "lib/Xamarin.iOS10/BouncyCastle.dll",
+        "lib/Xamarin.iOS10/MimeKit.dll",
+        "lib/Xamarin.iOS10/MimeKit.xml",
+        "lib/net35/MimeKit.dll",
+        "lib/net35/MimeKit.xml",
+        "lib/net40/MimeKit.dll",
+        "lib/net40/MimeKit.xml",
+        "lib/net45/MimeKit.dll",
+        "lib/net45/MimeKit.xml",
+        "lib/net451/MimeKit.dll",
+        "lib/net451/MimeKit.xml",
+        "lib/netstandard1.3/MimeKit.dll",
+        "lib/netstandard1.3/MimeKit.xml",
+        "lib/portable-net45+win+wp80+MonoAndroid10+Xamarin.iOS10+MonoTouch10/MimeKit.dll",
+        "lib/portable-net45+win+wp80+MonoAndroid10+Xamarin.iOS10+MonoTouch10/MimeKit.xml",
+        "lib/portable-net45+win+wp80+MonoAndroid10+Xamarin.iOS10+MonoTouch10/Portable.Text.Encoding.dll",
+        "lib/wpa81/MimeKit.dll",
+        "lib/wpa81/MimeKit.xml",
+        "lib/wpa81/Portable.Text.Encoding.dll",
+        "mimekit.1.16.1.nupkg.sha512",
+        "mimekit.nuspec"
+      ]
+    },
+    "NETCore.MailKit/1.1.1": {
+      "sha512": "DOGrGvs6FySZtIw41U4IVQ0GfqJlVXKtNZY9zzvj4Dff4zlx0FP9qqpM6QIFuiiPqLoWF4DpFiw3AAJEbkixCQ==",
+      "type": "package",
+      "path": "netcore.mailkit/1.1.1",
+      "files": [
+        "lib/netcoreapp1.1/NETCore.MailKit.dll",
+        "netcore.mailkit.1.1.1.nupkg.sha512",
+        "netcore.mailkit.nuspec"
+      ]
+    },
     "NETStandard.Library/1.6.1": {
       "sha512": "WcSp3+vP+yHNgS8EV5J7pZ9IRpeDuARBPN28by8zqff1wJQXm26PVU8L3/fYLBJVU7BtDyqNVWq2KlCVvSSR4A==",
       "type": "package",
@@ -2656,6 +2923,57 @@
         "dotnet_library_license.txt",
         "netstandard.library.1.6.1.nupkg.sha512",
         "netstandard.library.nuspec"
+      ]
+    },
+    "NuGet.Build.Packaging/0.1.248": {
+      "sha512": "PM40Pu95HeKlh7mHWxndOruEDM/vK/kyCvj9XulcyViK8YlieAGhYujK1qaVJfntPlw/vqyf641CkCnJ/7BbWA==",
+      "type": "package",
+      "path": "nuget.build.packaging/0.1.248",
+      "files": [
+        "build/ApiIntersect.exe",
+        "build/ApiIntersect.exe.config",
+        "build/FodyWeavers.xml",
+        "build/GenerateReferenceAssembly.csproj",
+        "build/ICSharpCode.Decompiler.dll",
+        "build/ICSharpCode.NRefactory.CSharp.dll",
+        "build/ICSharpCode.NRefactory.dll",
+        "build/MSBuild/Imports/Microsoft.Common.Props/ImportBefore/Microsoft.NuGet.Packaging.ImportBefore.props",
+        "build/MSBuild/Microsoft.Common.Targets/ImportAfter/Microsoft.NuGet.Packaging.ImportAfter.targets",
+        "build/Mono.Cecil.dll",
+        "build/Mono.Options.dll",
+        "build/NuGet.Build.Packaging.Authoring.props",
+        "build/NuGet.Build.Packaging.Authoring.targets",
+        "build/NuGet.Build.Packaging.Tasks.dll",
+        "build/NuGet.Build.Packaging.Tasks.pdb",
+        "build/NuGet.Build.Packaging.Version.props",
+        "build/NuGet.Build.Packaging.props",
+        "build/NuGet.Build.Packaging.targets",
+        "nuget.build.packaging.0.1.248.nupkg.sha512",
+        "nuget.build.packaging.nuspec"
+      ]
+    },
+    "Portable.BouncyCastle/1.8.1.2": {
+      "sha512": "G0pWrYwtjjiyka+twqqphegc4ddDWskvf2uWu2YiAUNdaAz0UYa/eXBlt+xjafby5Opa6J1ySw5MPezwiGi9aQ==",
+      "type": "package",
+      "path": "portable.bouncycastle/1.8.1.2",
+      "files": [
+        "Readme.html",
+        "lib/net4/BouncyCastle.Crypto.dll",
+        "lib/net4/BouncyCastle.Crypto.pdb",
+        "lib/net4/BouncyCastle.Crypto.xml",
+        "lib/netstandard1.0/BouncyCastle.Crypto.deps.json",
+        "lib/netstandard1.0/BouncyCastle.Crypto.dll",
+        "lib/netstandard1.0/BouncyCastle.Crypto.pdb",
+        "lib/netstandard1.0/BouncyCastle.Crypto.xml",
+        "lib/netstandard1.3/BouncyCastle.Crypto.deps.json",
+        "lib/netstandard1.3/BouncyCastle.Crypto.dll",
+        "lib/netstandard1.3/BouncyCastle.Crypto.pdb",
+        "lib/netstandard1.3/BouncyCastle.Crypto.xml",
+        "lib/portable-net4+sl5+wp8+win8+wpa81/BouncyCastle.Crypto.dll",
+        "lib/portable-net4+sl5+wp8+win8+wpa81/BouncyCastle.Crypto.pdb",
+        "lib/portable-net4+sl5+wp8+win8+wpa81/BouncyCastle.Crypto.xml",
+        "portable.bouncycastle.1.8.1.2.nupkg.sha512",
+        "portable.bouncycastle.nuspec"
       ]
     },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.1": {
@@ -3243,6 +3561,55 @@
         "ref/xamarinwatchos10/_._",
         "system.console.4.3.0.nupkg.sha512",
         "system.console.nuspec"
+      ]
+    },
+    "System.Data.Common/4.3.0": {
+      "sha512": "lm6E3T5u7BOuEH0u18JpbJHxBfOJPuCyl4Kg1RH10ktYLp5uEEE1xKrHW56/We4SnZpGAuCc9N0MJpSDhTHZGQ==",
+      "type": "package",
+      "path": "system.data.common/4.3.0",
+      "files": [
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net451/System.Data.Common.dll",
+        "lib/netstandard1.2/System.Data.Common.dll",
+        "lib/portable-net451+win8+wp8+wpa81/System.Data.Common.dll",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/net451/System.Data.Common.dll",
+        "ref/netstandard1.2/System.Data.Common.dll",
+        "ref/netstandard1.2/System.Data.Common.xml",
+        "ref/netstandard1.2/de/System.Data.Common.xml",
+        "ref/netstandard1.2/es/System.Data.Common.xml",
+        "ref/netstandard1.2/fr/System.Data.Common.xml",
+        "ref/netstandard1.2/it/System.Data.Common.xml",
+        "ref/netstandard1.2/ja/System.Data.Common.xml",
+        "ref/netstandard1.2/ko/System.Data.Common.xml",
+        "ref/netstandard1.2/ru/System.Data.Common.xml",
+        "ref/netstandard1.2/zh-hans/System.Data.Common.xml",
+        "ref/netstandard1.2/zh-hant/System.Data.Common.xml",
+        "ref/portable-net451+win8+wp8+wpa81/System.Data.Common.dll",
+        "ref/portable-net451+win8+wp8+wpa81/System.Data.Common.xml",
+        "ref/portable-net451+win8+wp8+wpa81/de/System.Data.Common.xml",
+        "ref/portable-net451+win8+wp8+wpa81/es/System.Data.Common.xml",
+        "ref/portable-net451+win8+wp8+wpa81/fr/System.Data.Common.xml",
+        "ref/portable-net451+win8+wp8+wpa81/it/System.Data.Common.xml",
+        "ref/portable-net451+win8+wp8+wpa81/ja/System.Data.Common.xml",
+        "ref/portable-net451+win8+wp8+wpa81/ko/System.Data.Common.xml",
+        "ref/portable-net451+win8+wp8+wpa81/ru/System.Data.Common.xml",
+        "ref/portable-net451+win8+wp8+wpa81/zh-hans/System.Data.Common.xml",
+        "ref/portable-net451+win8+wp8+wpa81/zh-hant/System.Data.Common.xml",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "ref/xamarintvos10/_._",
+        "ref/xamarinwatchos10/_._",
+        "system.data.common.4.3.0.nupkg.sha512",
+        "system.data.common.nuspec"
       ]
     },
     "System.Diagnostics.Debug/4.3.0": {
@@ -4536,6 +4903,79 @@
         "system.net.nameresolution.nuspec"
       ]
     },
+    "System.Net.NetworkInformation/4.3.0": {
+      "sha512": "zNVmWVry0pAu7lcrRBhwwU96WUdbsrGL3azyzsbXmVNptae1+Za+UgOe9Z6s8iaWhPn7/l4wQqhC56HZWq7tkg==",
+      "type": "package",
+      "path": "system.net.networkinformation/4.3.0",
+      "files": [
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net45/_._",
+        "lib/net46/System.Net.NetworkInformation.dll",
+        "lib/portable-net45+win8+wp8+wpa81/_._",
+        "lib/win8/_._",
+        "lib/wp80/_._",
+        "lib/wpa81/_._",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/net45/_._",
+        "ref/net46/System.Net.NetworkInformation.dll",
+        "ref/netcore50/System.Net.NetworkInformation.dll",
+        "ref/netcore50/System.Net.NetworkInformation.xml",
+        "ref/netcore50/de/System.Net.NetworkInformation.xml",
+        "ref/netcore50/es/System.Net.NetworkInformation.xml",
+        "ref/netcore50/fr/System.Net.NetworkInformation.xml",
+        "ref/netcore50/it/System.Net.NetworkInformation.xml",
+        "ref/netcore50/ja/System.Net.NetworkInformation.xml",
+        "ref/netcore50/ko/System.Net.NetworkInformation.xml",
+        "ref/netcore50/ru/System.Net.NetworkInformation.xml",
+        "ref/netcore50/zh-hans/System.Net.NetworkInformation.xml",
+        "ref/netcore50/zh-hant/System.Net.NetworkInformation.xml",
+        "ref/netstandard1.0/System.Net.NetworkInformation.dll",
+        "ref/netstandard1.0/System.Net.NetworkInformation.xml",
+        "ref/netstandard1.0/de/System.Net.NetworkInformation.xml",
+        "ref/netstandard1.0/es/System.Net.NetworkInformation.xml",
+        "ref/netstandard1.0/fr/System.Net.NetworkInformation.xml",
+        "ref/netstandard1.0/it/System.Net.NetworkInformation.xml",
+        "ref/netstandard1.0/ja/System.Net.NetworkInformation.xml",
+        "ref/netstandard1.0/ko/System.Net.NetworkInformation.xml",
+        "ref/netstandard1.0/ru/System.Net.NetworkInformation.xml",
+        "ref/netstandard1.0/zh-hans/System.Net.NetworkInformation.xml",
+        "ref/netstandard1.0/zh-hant/System.Net.NetworkInformation.xml",
+        "ref/netstandard1.3/System.Net.NetworkInformation.dll",
+        "ref/netstandard1.3/System.Net.NetworkInformation.xml",
+        "ref/netstandard1.3/de/System.Net.NetworkInformation.xml",
+        "ref/netstandard1.3/es/System.Net.NetworkInformation.xml",
+        "ref/netstandard1.3/fr/System.Net.NetworkInformation.xml",
+        "ref/netstandard1.3/it/System.Net.NetworkInformation.xml",
+        "ref/netstandard1.3/ja/System.Net.NetworkInformation.xml",
+        "ref/netstandard1.3/ko/System.Net.NetworkInformation.xml",
+        "ref/netstandard1.3/ru/System.Net.NetworkInformation.xml",
+        "ref/netstandard1.3/zh-hans/System.Net.NetworkInformation.xml",
+        "ref/netstandard1.3/zh-hant/System.Net.NetworkInformation.xml",
+        "ref/portable-net45+win8+wp8+wpa81/_._",
+        "ref/win8/_._",
+        "ref/wp80/_._",
+        "ref/wpa81/_._",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "ref/xamarintvos10/_._",
+        "ref/xamarinwatchos10/_._",
+        "runtimes/linux/lib/netstandard1.3/System.Net.NetworkInformation.dll",
+        "runtimes/osx/lib/netstandard1.3/System.Net.NetworkInformation.dll",
+        "runtimes/win/lib/net46/System.Net.NetworkInformation.dll",
+        "runtimes/win/lib/netcore50/System.Net.NetworkInformation.dll",
+        "runtimes/win/lib/netstandard1.3/System.Net.NetworkInformation.dll",
+        "system.net.networkinformation.4.3.0.nupkg.sha512",
+        "system.net.networkinformation.nuspec"
+      ]
+    },
     "System.Net.Primitives/4.3.0": {
       "sha512": "qOu+hDwFwoZPbzPvwut2qATe3ygjeQBDQj91xlsaqGFQUI5i4ZnZb8yyQuLGpDGivEPIt8EJkd1BVzVoP31FXA==",
       "type": "package",
@@ -5801,6 +6241,77 @@
         "system.runtime.numerics.nuspec"
       ]
     },
+    "System.Runtime.Serialization.Primitives/4.3.0": {
+      "sha512": "Wz+0KOukJGAlXjtKr+5Xpuxf8+c8739RI1C+A2BoQZT+wMCCoMDDdO8/4IRHfaVINqL78GO8dW8G2lW/e45Mcw==",
+      "type": "package",
+      "path": "system.runtime.serialization.primitives/4.3.0",
+      "files": [
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net45/_._",
+        "lib/net46/System.Runtime.Serialization.Primitives.dll",
+        "lib/netcore50/System.Runtime.Serialization.Primitives.dll",
+        "lib/netstandard1.3/System.Runtime.Serialization.Primitives.dll",
+        "lib/portable-net45+win8+wp8+wpa81/_._",
+        "lib/win8/_._",
+        "lib/wp80/_._",
+        "lib/wpa81/_._",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/net45/_._",
+        "ref/net46/System.Runtime.Serialization.Primitives.dll",
+        "ref/netcore50/System.Runtime.Serialization.Primitives.dll",
+        "ref/netcore50/System.Runtime.Serialization.Primitives.xml",
+        "ref/netcore50/de/System.Runtime.Serialization.Primitives.xml",
+        "ref/netcore50/es/System.Runtime.Serialization.Primitives.xml",
+        "ref/netcore50/fr/System.Runtime.Serialization.Primitives.xml",
+        "ref/netcore50/it/System.Runtime.Serialization.Primitives.xml",
+        "ref/netcore50/ja/System.Runtime.Serialization.Primitives.xml",
+        "ref/netcore50/ko/System.Runtime.Serialization.Primitives.xml",
+        "ref/netcore50/ru/System.Runtime.Serialization.Primitives.xml",
+        "ref/netcore50/zh-hans/System.Runtime.Serialization.Primitives.xml",
+        "ref/netcore50/zh-hant/System.Runtime.Serialization.Primitives.xml",
+        "ref/netstandard1.0/System.Runtime.Serialization.Primitives.dll",
+        "ref/netstandard1.0/System.Runtime.Serialization.Primitives.xml",
+        "ref/netstandard1.0/de/System.Runtime.Serialization.Primitives.xml",
+        "ref/netstandard1.0/es/System.Runtime.Serialization.Primitives.xml",
+        "ref/netstandard1.0/fr/System.Runtime.Serialization.Primitives.xml",
+        "ref/netstandard1.0/it/System.Runtime.Serialization.Primitives.xml",
+        "ref/netstandard1.0/ja/System.Runtime.Serialization.Primitives.xml",
+        "ref/netstandard1.0/ko/System.Runtime.Serialization.Primitives.xml",
+        "ref/netstandard1.0/ru/System.Runtime.Serialization.Primitives.xml",
+        "ref/netstandard1.0/zh-hans/System.Runtime.Serialization.Primitives.xml",
+        "ref/netstandard1.0/zh-hant/System.Runtime.Serialization.Primitives.xml",
+        "ref/netstandard1.3/System.Runtime.Serialization.Primitives.dll",
+        "ref/netstandard1.3/System.Runtime.Serialization.Primitives.xml",
+        "ref/netstandard1.3/de/System.Runtime.Serialization.Primitives.xml",
+        "ref/netstandard1.3/es/System.Runtime.Serialization.Primitives.xml",
+        "ref/netstandard1.3/fr/System.Runtime.Serialization.Primitives.xml",
+        "ref/netstandard1.3/it/System.Runtime.Serialization.Primitives.xml",
+        "ref/netstandard1.3/ja/System.Runtime.Serialization.Primitives.xml",
+        "ref/netstandard1.3/ko/System.Runtime.Serialization.Primitives.xml",
+        "ref/netstandard1.3/ru/System.Runtime.Serialization.Primitives.xml",
+        "ref/netstandard1.3/zh-hans/System.Runtime.Serialization.Primitives.xml",
+        "ref/netstandard1.3/zh-hant/System.Runtime.Serialization.Primitives.xml",
+        "ref/portable-net45+win8+wp8+wpa81/_._",
+        "ref/win8/_._",
+        "ref/wp80/_._",
+        "ref/wpa81/_._",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "ref/xamarintvos10/_._",
+        "ref/xamarinwatchos10/_._",
+        "runtimes/aot/lib/netcore50/System.Runtime.Serialization.Primitives.dll",
+        "system.runtime.serialization.primitives.4.3.0.nupkg.sha512",
+        "system.runtime.serialization.primitives.nuspec"
+      ]
+    },
     "System.Security.Claims/4.3.0": {
       "sha512": "P/+BR/2lnc4PNDHt/TPBAWHVMLMRHsyYZbU1NphW4HIWzCggz8mJbTQQ3MKljFE7LS3WagmVFuBgoLcFzYXlkA==",
       "type": "package",
@@ -6217,10 +6728,10 @@
         "system.text.encoding.nuspec"
       ]
     },
-    "System.Text.Encoding.CodePages/4.0.1": {
-      "sha512": "h4z6rrA/hxWf4655D18IIZ0eaLRa3tQC/j+e26W+VinIHY0l07iEXaAvO0YSYq3MvCjMYy8Zs5AdC1sxNQOB7Q==",
+    "System.Text.Encoding.CodePages/4.3.0": {
+      "sha512": "IRiEFUa5b/Gs5Egg8oqBVoywhtOeaO2KOx3j0RfcYY/raxqBuEK7NXRDgOwtYM8qbi+7S4RPXUbNt+ZxyY0/NQ==",
       "type": "package",
-      "path": "system.text.encoding.codepages/4.0.1",
+      "path": "system.text.encoding.codepages/4.3.0",
       "files": [
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -6250,7 +6761,7 @@
         "ref/xamarinwatchos10/_._",
         "runtimes/unix/lib/netstandard1.3/System.Text.Encoding.CodePages.dll",
         "runtimes/win/lib/netstandard1.3/System.Text.Encoding.CodePages.dll",
-        "system.text.encoding.codepages.4.0.1.nupkg.sha512",
+        "system.text.encoding.codepages.4.3.0.nupkg.sha512",
         "system.text.encoding.codepages.nuspec"
       ]
     },
@@ -7033,7 +7544,8 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v1.1": [
-      "Microsoft.NETCore.App >= 1.1.2"
+      "Microsoft.NETCore.App >= 1.1.2",
+      "NETCore.MailKit >= 1.1.1"
     ]
   },
   "packageFolders": {
@@ -7063,6 +7575,10 @@
             "target": "Package",
             "version": "1.1.2",
             "autoReferenced": true
+          },
+          "NETCore.MailKit": {
+            "target": "Package",
+            "version": "1.1.1"
           }
         }
       }
