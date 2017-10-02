@@ -17,6 +17,9 @@ namespace CheckLatestRedditGUPDiscount
 
         private static void Main(string[] args)
         {
+
+            LastDiscount = new LastDiscountOperation().GetLastDiscount();
+
             while (true)
             {
                 ProcessRepositories().Wait();
@@ -57,7 +60,7 @@ namespace CheckLatestRedditGUPDiscount
                 {
                     if (validDiscounts.Count != 0)
                     {
-                        SendEmail(validDiscounts);
+                        SendTextMessage(validDiscounts);
                     }
 
                     return validDiscounts;
@@ -74,7 +77,7 @@ namespace CheckLatestRedditGUPDiscount
 
             if (validDiscounts.Count != 0)
             {
-                SendEmail(validDiscounts);
+                SendTextMessage(validDiscounts);
             }
 
             return validDiscounts;
@@ -83,15 +86,7 @@ namespace CheckLatestRedditGUPDiscount
         private static void SendEmail(IDictionary<string, string> validDiscounts)
         {
             LastDiscount = validDiscounts.First().Value;
-
-            //var client = new SmtpClient("smtp.gmail.com", 587)
-            //{
-            //    Credentials = new NetworkCredential("myusername@gmail.com", "mypwd"),
-            //    EnableSsl = true
-            //};
-            //client.Send("myusername@gmail.com", "myusername@gmail.com", "test", "testbody");
-            //Console.WriteLine("Sent");
-            //Console.ReadLine();
+            new LastDiscountOperation().SetLastDiscount(LastDiscount);
 
             StringBuilder sb = new StringBuilder();
             foreach (var validDiscount in validDiscounts)
@@ -101,8 +96,8 @@ namespace CheckLatestRedditGUPDiscount
             }
 
             var message = new MimeMessage();
-            message.From.Add(new MailboxAddress("Allen", "Allen0810@gmail.com"));
-            message.To.Add(new MailboxAddress("Allen", "azhuo@fsco.com"));
+            message.From.Add(new MailboxAddress("xxx", "xxx@gmail.com"));
+            message.To.Add(new MailboxAddress("xxx", "xxx@xxx.com"));
             message.Subject = "Reddit GUP Discount";
             message.Body = new TextPart("plain")
             {
@@ -112,8 +107,7 @@ namespace CheckLatestRedditGUPDiscount
             using (var client = new SmtpClient())
             {
                 client.Connect("smtp.gmail.com", 587, false);
-                //client.AuthenticationMechanisms.Remove("XOAUTH2");
-                client.Authenticate(new NetworkCredential("xxx", "xxx"));
+                client.Authenticate(new NetworkCredential("xxx@gmail.com", "xxx"));
                 client.Send(message);
                 client.Disconnect(true);
             }
@@ -121,6 +115,34 @@ namespace CheckLatestRedditGUPDiscount
 
         private static void SendTextMessage(IDictionary<string, string> validDiscounts)
         {
+
+            LastDiscount = validDiscounts.First().Value;
+            new LastDiscountOperation().SetLastDiscount(LastDiscount);
+
+            StringBuilder sb = new StringBuilder();
+            foreach (var validDiscount in validDiscounts)
+            {
+                sb.AppendLine("Discount - (" + validDiscount.Value + ")" + ", URL - (" + validDiscount.Key + ")");
+                sb.AppendLine("-----------------------------------------------------------------------------------");
+            }
+
+            var message = new MimeMessage();
+            message.From.Add(new MailboxAddress("xxx", "xxx@gmail.com"));
+            message.To.Add(new MailboxAddress("xxx", "xxx@tmomail.net"));
+            message.To.Add(new MailboxAddress("xxx", "xxx@tmomail.net"));
+            message.Subject = "Reddit GUP Discount";
+            message.Body = new TextPart("plain")
+            {
+                Text = sb.ToString()
+            };
+
+            using (var client = new SmtpClient())
+            {
+                client.Connect("smtp.gmail.com", 587, false);
+                client.Authenticate(new NetworkCredential("xxxx@gmail.com", "xxxx"));
+                client.Send(message);
+                client.Disconnect(true);
+            }
         }
     }
 }

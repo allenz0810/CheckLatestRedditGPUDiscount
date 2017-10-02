@@ -6,3 +6,4 @@ C:\github\CheckLatestRedditGUPDiscount\CheckLatestRedditGUPDiscount\bin\Debug\ne
 C:\github\CheckLatestRedditGUPDiscount\CheckLatestRedditGUPDiscount\obj\Debug\netcoreapp1.1\CheckLatestRedditGUPDiscount.AssemblyInfo.cs
 C:\github\CheckLatestRedditGUPDiscount\CheckLatestRedditGUPDiscount\obj\Debug\netcoreapp1.1\CheckLatestRedditGUPDiscount.dll
 C:\github\CheckLatestRedditGUPDiscount\CheckLatestRedditGUPDiscount\obj\Debug\netcoreapp1.1\CheckLatestRedditGUPDiscount.pdb
+C:\github\CheckLatestRedditGUPDiscount\CheckLatestRedditGUPDiscount\obj\Debug\netcoreapp1.1\CheckLatestRedditGUPDiscount.csprojResolveAssemblyReference.cache
