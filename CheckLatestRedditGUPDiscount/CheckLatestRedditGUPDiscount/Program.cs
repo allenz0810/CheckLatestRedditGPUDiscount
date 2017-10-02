@@ -1,5 +1,8 @@
 ﻿using MailKit.Net.Smtp;
+using MailKit.Security;
 using MimeKit;
+using SendGrid;
+using SendGrid.Helpers.Mail;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -17,7 +20,6 @@ namespace CheckLatestRedditGUPDiscount
 
         private static void Main(string[] args)
         {
-
             LastDiscount = new LastDiscountOperation().GetLastDiscount();
 
             while (true)
@@ -60,7 +62,7 @@ namespace CheckLatestRedditGUPDiscount
                 {
                     if (validDiscounts.Count != 0)
                     {
-                        SendTextMessage(validDiscounts);
+                        await SendTextMessagebYSendGridAsync(validDiscounts);
                     }
 
                     return validDiscounts;
@@ -77,13 +79,14 @@ namespace CheckLatestRedditGUPDiscount
 
             if (validDiscounts.Count != 0)
             {
-                SendTextMessage(validDiscounts);
+                await SendTextMessagebYSendGridAsync(validDiscounts);
             }
 
             return validDiscounts;
         }
 
-        private static void SendEmail(IDictionary<string, string> validDiscounts)
+        //using mailkit to connect to Gmail and send email or text message
+        private static void SendEmailByGmail(IDictionary<string, string> validDiscounts)
         {
             LastDiscount = validDiscounts.First().Value;
             new LastDiscountOperation().SetLastDiscount(LastDiscount);
@@ -97,7 +100,7 @@ namespace CheckLatestRedditGUPDiscount
 
             var message = new MimeMessage();
             message.From.Add(new MailboxAddress("xxx", "xxx@gmail.com"));
-            message.To.Add(new MailboxAddress("xxx", "xxx@xxx.com"));
+            message.To.Add(new MailboxAddress("xxx", "xxx@fsco.com"));
             message.Subject = "Reddit GUP Discount";
             message.Body = new TextPart("plain")
             {
@@ -113,9 +116,8 @@ namespace CheckLatestRedditGUPDiscount
             }
         }
 
-        private static void SendTextMessage(IDictionary<string, string> validDiscounts)
+        private static void SendTextMessageByGmail(IDictionary<string, string> validDiscounts)
         {
-
             LastDiscount = validDiscounts.First().Value;
             new LastDiscountOperation().SetLastDiscount(LastDiscount);
 
@@ -126,23 +128,48 @@ namespace CheckLatestRedditGUPDiscount
                 sb.AppendLine("-----------------------------------------------------------------------------------");
             }
 
-            var message = new MimeMessage();
-            message.From.Add(new MailboxAddress("xxx", "xxx@gmail.com"));
-            message.To.Add(new MailboxAddress("xxx", "xxx@tmomail.net"));
-            message.To.Add(new MailboxAddress("xxx", "xxx@tmomail.net"));
-            message.Subject = "Reddit GUP Discount";
-            message.Body = new TextPart("plain")
-            {
-                Text = sb.ToString()
-            };
-
             using (var client = new SmtpClient())
             {
-                client.Connect("smtp.gmail.com", 587, false);
-                client.Authenticate(new NetworkCredential("xxxx@gmail.com", "xxxx"));
-                client.Send(message);
+                MimeMessage mes = new MimeMessage();
+                mes.From.Add(new MailboxAddress("xxx", "xxx@gmail.com"));
+                mes.To.Add(new MailboxAddress("xxx", "xxx@tmomail.net"));
+                //mes.To.Add(new MailboxAddress("JiaJie", "6463594198@tmomail.net"));
+                mes.Subject = "Reddit GUP Discount";
+                mes.Body = new TextPart("plain")
+                {
+                    Text = sb.ToString()
+                };
+
+                client.Connect("smtp.gmail.com", 465, SecureSocketOptions.SslOnConnect);
+                client.Authenticate("xxx@gmail.com", "xxx");
+                client.Send(mes);
                 client.Disconnect(true);
             }
+        }
+
+        //use Send Grid to send mail or text message
+        private static async Task SendTextMessagebYSendGridAsync(IDictionary<string, string> validDiscounts)
+        {
+            LastDiscount = validDiscounts.First().Value;
+            new LastDiscountOperation().SetLastDiscount(LastDiscount);
+
+            StringBuilder sb = new StringBuilder();
+            foreach (var validDiscount in validDiscounts)
+            {
+                sb.AppendLine("Discount - (" + validDiscount.Value + ")" + ", URL - (" + validDiscount.Key + ")");
+                sb.AppendLine("-----------------------------------------------------------------------------------");
+            }
+
+            var apiKey = "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";
+            var client = new SendGridClient(apiKey);
+            var msg = new SendGridMessage()
+            {
+                From = new EmailAddress("xx@gmail.com", "Allen Discount"),
+                Subject = "Reddit GUP Discount",
+                PlainTextContent = sb.ToString(),
+            };
+            msg.AddTo(new EmailAddress("xxx", "xxx@tmomail.net"));
+            var response = await client.SendEmailAsync(msg);
         }
     }
 }
