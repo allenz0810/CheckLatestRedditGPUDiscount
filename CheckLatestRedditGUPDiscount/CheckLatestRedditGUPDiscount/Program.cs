@@ -160,7 +160,7 @@ namespace CheckLatestRedditGUPDiscount
                 sb.AppendLine("-----------------------------------------------------------------------------------");
             }
 
-            var apiKey = "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";
+            var apiKey = "xxx";
             var client = new SendGridClient(apiKey);
             var msg = new SendGridMessage()
             {
