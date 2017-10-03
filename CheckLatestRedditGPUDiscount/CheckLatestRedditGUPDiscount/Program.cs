@@ -3,6 +3,7 @@ using MailKit.Security;
 using MimeKit;
 using SendGrid;
 using SendGrid.Helpers.Mail;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -12,7 +13,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace CheckLatestRedditGUPDiscount
+namespace CheckLatestRedditGPUDiscount
 {
     internal class Program
     {
@@ -26,6 +27,8 @@ namespace CheckLatestRedditGUPDiscount
             {
                 ProcessRepositories().Wait();
 
+                Console.WriteLine($"Current Time : { DateTime.Now.ToString()} ,Latest Discount : {LastDiscount}");
+                Console.WriteLine();
                 Thread.Sleep(90000);
             }
         }
@@ -62,7 +65,7 @@ namespace CheckLatestRedditGUPDiscount
                 {
                     if (validDiscounts.Count != 0)
                     {
-                        await SendTextMessagebYSendGridAsync(validDiscounts);
+                        SendTextMessageByGmail(validDiscounts);
                     }
 
                     return validDiscounts;
@@ -79,7 +82,7 @@ namespace CheckLatestRedditGUPDiscount
 
             if (validDiscounts.Count != 0)
             {
-                await SendTextMessagebYSendGridAsync(validDiscounts);
+                SendTextMessageByGmail(validDiscounts);
             }
 
             return validDiscounts;
@@ -101,7 +104,7 @@ namespace CheckLatestRedditGUPDiscount
             var message = new MimeMessage();
             message.From.Add(new MailboxAddress("xxx", "xxx@gmail.com"));
             message.To.Add(new MailboxAddress("xxx", "xxx@fsco.com"));
-            message.Subject = "Reddit GUP Discount";
+            message.Subject = "Reddit GPU Discount";
             message.Body = new TextPart("plain")
             {
                 Text = sb.ToString()
@@ -134,7 +137,7 @@ namespace CheckLatestRedditGUPDiscount
                 mes.From.Add(new MailboxAddress("xxx", "xxx@gmail.com"));
                 mes.To.Add(new MailboxAddress("xxx", "xxx@tmomail.net"));
                 //mes.To.Add(new MailboxAddress("JiaJie", "6463594198@tmomail.net"));
-                mes.Subject = "Reddit GUP Discount";
+                mes.Subject = "Reddit GPU Discount";
                 mes.Body = new TextPart("plain")
                 {
                     Text = sb.ToString()
@@ -165,7 +168,7 @@ namespace CheckLatestRedditGUPDiscount
             var msg = new SendGridMessage()
             {
                 From = new EmailAddress("xx@gmail.com", "Allen Discount"),
-                Subject = "Reddit GUP Discount",
+                Subject = "Reddit GPU Discount",
                 PlainTextContent = sb.ToString(),
             };
             msg.AddTo(new EmailAddress("xxx", "xxx@tmomail.net"));

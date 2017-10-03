@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace CheckLatestRedditGUPDiscount
+namespace CheckLatestRedditGPUDiscount
 {
     public class LastDiscountOperation
     {
