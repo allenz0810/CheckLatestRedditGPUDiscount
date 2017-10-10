@@ -135,7 +135,7 @@ namespace CheckLatestRedditGPUDiscount
             {
                 MimeMessage mes = new MimeMessage();
                 mes.From.Add(new MailboxAddress("xxx", "xxx@gmail.com"));
-                mes.To.Add(new MailboxAddress("xxx", "xxx@tmomail.net"));
+                mes.To.Add(new MailboxAddress("Allen", "6462202811@tmomail.net"));
                 //mes.To.Add(new MailboxAddress("JiaJie", "6463594198@tmomail.net"));
                 mes.Subject = "Reddit GPU Discount";
                 mes.Body = new TextPart("plain")
@@ -151,7 +151,7 @@ namespace CheckLatestRedditGPUDiscount
         }
 
         //use Send Grid to send mail or text message
-        private static async Task SendTextMessagebYSendGridAsync(IDictionary<string, string> validDiscounts)
+        private async Task SendTextMessagebYSendGridAsync(IDictionary<string, string> validDiscounts)
         {
             LastDiscount = validDiscounts.First().Value;
             new LastDiscountOperation().SetLastDiscount(LastDiscount);

@@ -30,5 +30,6 @@ namespace CheckLatestRedditGPUDiscount
             string output = Newtonsoft.Json.JsonConvert.SerializeObject(jsonLastDiscount, Formatting.Indented);
             File.WriteAllText("data.json", output);
         }
+
     }
 }
