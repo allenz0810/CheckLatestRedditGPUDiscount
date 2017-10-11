@@ -31,5 +31,9 @@ namespace CheckLatestRedditGPUDiscount
             File.WriteAllText("data.json", output);
         }
 
+        private bool IsLastDiscount()
+        {
+            return false;
+        }
     }
 }

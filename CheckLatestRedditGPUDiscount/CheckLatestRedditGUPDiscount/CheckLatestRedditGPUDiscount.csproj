@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="LastDiscountOperation.cs~RF4e63f57.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="NETCore.MailKit" Version="1.1.1" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
     <PackageReference Include="Sendgrid" Version="9.9.0" />
