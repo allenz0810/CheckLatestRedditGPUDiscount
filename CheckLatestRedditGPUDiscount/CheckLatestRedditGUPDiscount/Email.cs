@@ -14,7 +14,9 @@ namespace CheckLatestRedditGPUDiscount
     public class Email
     {
         public string Form { get; set; }
+        public string FormName { get; set; }
         public string To { get; set; }
+        public string ToName { get; set; }
         public string Subject { get; set; }
         public string Host { get; set; }
         public int Port { get; set; }
@@ -30,7 +32,9 @@ namespace CheckLatestRedditGPUDiscount
         {
             var EmailInfos = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(@"AppAettings.json"));
             Form = EmailInfos["EmailForm"];
+            FormName = EmailInfos["EmailFormName"];
             To = EmailInfos["EmailTo"];
+            ToName = EmailInfos["EmailToName"];
             Subject = EmailInfos["EmailSubject"];
             Host = EmailInfos["EmailConnectHost"];
             Port = Convert.ToInt32(EmailInfos["EmailConnectPort"]);
@@ -39,7 +43,7 @@ namespace CheckLatestRedditGPUDiscount
         }
 
         //using mailkit to connect to Gmail and send email or text message
-        public void SendEmailByGmail(IDictionary<string, string> validDiscounts)
+        public string SendEmailByGmail(IDictionary<string, string> validDiscounts)
         {
             var LastDiscount = validDiscounts.First().Value;
             new LastDiscountOperation().SetLastDiscount(LastDiscount);
@@ -52,9 +56,9 @@ namespace CheckLatestRedditGPUDiscount
             }
 
             var message = new MimeMessage();
-            message.From.Add(new MailboxAddress("xxx", "xxx@gmail.com"));
-            message.To.Add(new MailboxAddress("xxx", "xxx@fsco.com"));
-            message.Subject = "Reddit GPU Discount";
+            message.From.Add(new MailboxAddress(FormName, Form));
+            message.To.Add(new MailboxAddress(ToName, To));
+            message.Subject = Subject;
             message.Body = new TextPart("plain")
             {
                 Text = sb.ToString()
@@ -62,11 +66,13 @@ namespace CheckLatestRedditGPUDiscount
 
             using (var client = new SmtpClient())
             {
-                client.Connect("smtp.gmail.com", 587, false);
-                client.Authenticate(new NetworkCredential("xxx@gmail.com", "xxx"));
+                client.Connect(Host, Port, false);
+                client.Authenticate(new NetworkCredential(UserName, Password));
                 client.Send(message);
                 client.Disconnect(true);
             }
+
+            return LastDiscount;
         }
 
         public void SendTextMessageByGmail(IDictionary<string, string> validDiscounts)

@@ -53,8 +53,12 @@ namespace CheckLatestRedditGPUDiscount
                 {
                     if (validDiscounts.Count != 0)
                     {
-                        new Email().SendTextMessageByGmail(validDiscounts);
+                        LastDiscount = new Email().SendEmailByGmail(validDiscounts);
                     }
+
+                    Console.WriteLine($"Current Time : { DateTime.Now.ToString()} , Latest Discount : {LastDiscount}");
+                    Console.WriteLine();
+                    return;
                 }
                 else
                 {
@@ -68,10 +72,10 @@ namespace CheckLatestRedditGPUDiscount
 
             if (validDiscounts.Count != 0)
             {
-                new Email().SendTextMessageByGmail(validDiscounts);
+                LastDiscount = new Email().SendEmailByGmail(validDiscounts);
             }
 
-            Console.WriteLine($"Current Time : { DateTime.Now.ToString()} ,Latest Discount : {LastDiscount}");
+            Console.WriteLine($"Current Time : { DateTime.Now.ToString()} , Latest Discount : {LastDiscount}");
             Console.WriteLine();
         }
     }

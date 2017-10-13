@@ -1,10 +1,12 @@
 ﻿{
   "URL": "https://www.reddit.com/r/buildapcsales/search?q=GPU&sort=new&restrict_sr=on&feature=legacy_search",
   "EmailForm": "",
+  "EmailFormName": "",
   "EmailTo": "",
-  "EmailSubject": "",
-  "EmailConnectHost": "",
-  "EmailConnectPort": 0,
+  "EmailToName": "",
+  "EmailSubject": "Reddit GPU Discount",
+  "EmailConnectHost": "smtp.gmail.com",
+  "EmailConnectPort": 587,
   "EmailUserName": "",
-  "EmailPassword" : ""
+  "EmailPassword": ""
 }
