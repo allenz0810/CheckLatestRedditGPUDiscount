@@ -23,12 +23,30 @@ namespace CheckLatestRedditGPUDiscount
         public string UserName { get; set; }
         public string Password { get; set; }
 
-        public Email()
+        public string MessageForm { get; set; }
+        public string MessageFormName { get; set; }
+        public string MessageToMobileCompany { get; set; }
+        public string MessageTo { get; set; }
+        public string MessageToName { get; set; }
+        public string MessageSubject { get; set; }
+        public string MessageHost { get; set; }
+        public int MessagePort { get; set; }
+        public string MessageUserName { get; set; }
+        public string MessagePassword { get; set; }
+
+        public Email(int sendOption = 1)
         {
-            GetData();
+            if (sendOption == 1)
+            {
+                GetDataEmail();
+            }
+            else
+            {
+                GetMessageData();
+            }
         }
 
-        private void GetData()
+        private void GetDataEmail()
         {
             var EmailInfos = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(@"AppAettings.json"));
             Form = EmailInfos["EmailForm"];
@@ -40,6 +58,24 @@ namespace CheckLatestRedditGPUDiscount
             Port = Convert.ToInt32(EmailInfos["EmailConnectPort"]);
             UserName = EmailInfos["EmailUserName"];
             Password = EmailInfos["EmailPassword"];
+        }
+
+        private void GetMessageData()
+        {
+            var EmailInfos = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(@"AppAettings.json"));
+            MessageForm = EmailInfos["MessageForm"];
+            MessageFormName = EmailInfos["MessageFormName"];
+            MessageToMobileCompany = EmailInfos["MessageToMobileCompany"];
+            MessageTo = EmailInfos["MessageTo"];
+            MessageToName = EmailInfos["MessageToName"];
+            MessageSubject = EmailInfos["MessageSubject"];
+            MessageHost = EmailInfos["MessageConnectHost"];
+            MessagePort = Convert.ToInt32(EmailInfos["MessageConnectPort"]);
+            MessageUserName = EmailInfos["MessageUserName"];
+            MessagePassword = EmailInfos["MessagePassword"];
+
+            var mobileGateway = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(@"InternationalCarrierGateway.json"));
+            MessageTo += mobileGateway[MessageToMobileCompany];
         }
 
         //using mailkit to connect to Gmail and send email or text message
@@ -87,20 +123,20 @@ namespace CheckLatestRedditGPUDiscount
                 sb.AppendLine("-----------------------------------------------------------------------------------");
             }
 
+            var message = new MimeMessage();
+            message.From.Add(new MailboxAddress(MessageFormName, MessageForm));
+            message.To.Add(new MailboxAddress(MessageToName, MessageTo));
+            message.Subject = MessageSubject;
+            message.Body = new TextPart("plain")
+            {
+                Text = sb.ToString()
+            };
+
             using (var client = new SmtpClient())
             {
-                MimeMessage mes = new MimeMessage();
-                mes.From.Add(new MailboxAddress("xxx", "xxx@gmail.com"));
-                mes.To.Add(new MailboxAddress("xxx", "xxx@tmomail.net"));
-                mes.Subject = "Reddit GPU Discount";
-                mes.Body = new TextPart("plain")
-                {
-                    Text = sb.ToString()
-                };
-
-                client.Connect("smtp.gmail.com", 465, SecureSocketOptions.SslOnConnect);
-                client.Authenticate("xxx@gmail.com", "xxx");
-                client.Send(mes);
+                client.Connect(MessageHost, MessagePort, false);
+                client.Authenticate(new NetworkCredential(MessageUserName, MessagePassword));
+                client.Send(message);
                 client.Disconnect(true);
             }
         }

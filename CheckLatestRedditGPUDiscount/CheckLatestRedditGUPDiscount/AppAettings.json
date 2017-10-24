@@ -4,9 +4,20 @@
   "EmailFormName": "",
   "EmailTo": "",
   "EmailToName": "",
-  "EmailSubject": "Reddit GPU Discount",
-  "EmailConnectHost": "smtp.gmail.com",
-  "EmailConnectPort": 587,
+  "EmailSubject": "",
+  "EmailConnectHost": "",
+  "EmailConnectPort": 0,
   "EmailUserName": "",
-  "EmailPassword": ""
+  "EmailPassword": "",
+
+  "MessageForm": "",
+  "MessageFormName": "",
+  "MessageToMobileCompany": "",
+  "MessageTo": "",
+  "MessageName": "",
+  "MessageSubject": "",
+  "MessageConnectHost": "",
+  "MessageConnectPort": ,0
+  "MessageUserName": "",
+  "MessagePassword": ""
 }
